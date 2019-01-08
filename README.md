@@ -1,5 +1,7 @@
 # Physthon
-A collection of Physics simulations written in python. 
+A platform and helper library for the development of instructional physics simulations.
+
+Also has a collection of instructional simulations. 
 
 ## Dependencies
 * Python 3
