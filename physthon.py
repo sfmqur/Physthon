@@ -7,19 +7,19 @@ from IPython.display import display
 
 
 class Renderer:
-    def __init__(self, view_width=600, view_height=400, camera_position=[10, 6, 10]):
+    def __init__(self, view_width=600, view_height=400, camera_position=[10, 6, 10], view_range=[0.1, 1000], fov=75,
+                 light_position=[0, 10, 10]):
+        self.scene = three.Scene()
         self.width = view_width
         self.height = view_height
-        self.scene = three.Scene()
 
         # sets up the camera for this renderer
-        # TODO: set up near and far
-        self.camera = three.PerspectiveCamera(fov=75, aspect=self.width / self.height, position=camera_position, near=0.1,
-                                              far=1000, )
+        self.camera = three.PerspectiveCamera(fov=fov, aspect=self.width / self.height, position=camera_position,
+                                              near=view_range[0], far=view_range[1])
         # scene takes in a list of things to add
         self.scene.add([self.camera])
 
-        self.lights = [three.AmbientLight(), three.DirectionalLight(position=[0, 10, 10])]
+        self.lights = [three.AmbientLight(), three.DirectionalLight(position=light_position)]
         self.scene.add(self.lights)
 
         # sets up the mouse controls of the camera
