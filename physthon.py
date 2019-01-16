@@ -33,6 +33,17 @@ class Renderer:
         return self.renderer
 
 
+class PositionAnimator:
+    # .mesh of the moving object, double[], double[] -> void
+    def __init__(self, object_mesh, time_list, position_list):
+        self.position_track = three.VectorKeyframeTrack(name='.position', times=time_list, values=position_list)
+        self.clip = three.AnimationClip(tracks=[self.position_track])
+        self.action = three.AnimationAction(three.AnimationMixer(object_mesh), self.clip, object_mesh)
+
+    def animate(self):
+        return self.action
+
+
 # self.geo needs to be added to Renderer scene
 class Sphere:
     # color can be in hex format #ffffff
