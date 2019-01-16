@@ -7,14 +7,14 @@ from IPython.display import display
 
 
 class Renderer:
-    def __init__(self, viewWidth=600, viewHeight=400):
-        self.width = viewWidth
-        self.height = viewHeight
+    def __init__(self, view_width=600, view_height=400, camera_position=[10, 6, 10]):
+        self.width = view_width
+        self.height = view_height
         self.scene = three.Scene()
 
         # sets up the camera for this renderer
         # TODO: set up near and far
-        self.camera = three.PerspectiveCamera(fov=75, aspect=viewWidth / viewHeight, position=[10, 6, 10], near=0.1,
+        self.camera = three.PerspectiveCamera(fov=75, aspect=self.width / self.height, position=camera_position, near=0.1,
                                               far=1000, )
         # scene takes in a list of things to add
         self.scene.add([self.camera])
@@ -44,6 +44,7 @@ class Sphere:
         self.mesh = three.Mesh(geometry=self.geo, material=self.mat)
 
         self.mass = mass
+        # WARNING: position is in the form of [x,z,y]
         self.pos = position
         self.vel = velocity
         self.acc = acceleration
