@@ -6,7 +6,7 @@ from random import getrandbits
 
 
 # void -> string
-def RandomColor():
+def random_hex_color():
     '''
         Returns a random 6 digit hex number for use with colors
     :return: hex string of the format #ffffff
