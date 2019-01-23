@@ -2,6 +2,17 @@
 '''
 
 import pythreejs as three
+from random import getrandbits
+
+
+# void -> string
+def RandomColor():
+    '''
+        Returns a random 6 digit hex number for use with colors
+    :return: hex string of the format #ffffff
+    '''
+
+    return '#' + '%0x' % getrandbits(6 * 4)
 
 
 class Renderer:
@@ -42,7 +53,7 @@ class PositionAnimator:
         return self.action.play()
 
 
-# self.geo needs to be added to Renderer scene
+# self.mesh needs to be added to Renderer scene to be visible
 class Box:
     # color can be in hex format #ffffff
     def __init__(self, width=1, height=1, depth=1, color='red', mass=1, position=[0, 0, 0], velocity=[0, 0, 0],
@@ -67,7 +78,8 @@ class Box:
 # self.geo needs to be added to Renderer scene
 class Sphere:
     # color can be in hex format #ffffff
-    def __init__(self, radius=1, color='orange', mass=1, position=[0, 0, 0], velocity=[0, 0, 0], acceleration=[0, 0, 0]):
+    def __init__(self, radius=1, color='orange', mass=1, position=[0, 0, 0], velocity=[0, 0, 0],
+                 acceleration=[0, 0, 0]):
         self.radius = radius
         self.geo = three.SphereBufferGeometry(radius=self.radius, widthSegments=32, heightSegments=16)
         self.mat = three.MeshPhysicalMaterial(color=color)
