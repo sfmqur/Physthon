@@ -1,9 +1,7 @@
 '''     Library that contains functions useful for the creation of physics simulations to be run in Jupyter.
 '''
 
-import numpy as np
 import pythreejs as three
-from IPython.display import display
 
 
 class Renderer:
@@ -42,6 +40,27 @@ class PositionAnimator:
 
     def animate(self):
         return self.action
+
+
+# self.geo needs to be added to Renderer scene
+class Box:
+    # color can be in hex format #ffffff
+    def __init__(self, width=1, height=1, depth=1, color='red', mass=1, position=[0, 0, 0], velocity=[0, 0, 0],
+                 acceleration=[0, 0, 0]):
+        self.width = width
+        self.height = height
+        self.depth = depth
+        self.geo = three.BoxBufferGeometry(width=self.width, height=self.height, depth=self.depth, widthSegments=1,
+                                           heightSegments=1, depthSegments=1)
+        self.mat = three.MeshPhysicalMaterial(color=color)
+        # TODO: fix it so that calling self (ie scene.add(box))returns the self.mesh
+        self.mesh = three.Mesh(geometry=self.geo, material=self.mat)
+
+        self.mass = mass
+        # WARNING: position is in the form of [x,z,y]
+        self.pos = position
+        self.vel = velocity
+        self.acc = acceleration
 
 
 # self.geo needs to be added to Renderer scene
