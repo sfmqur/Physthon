@@ -39,7 +39,7 @@ class PositionAnimator:
         self.action = three.AnimationAction(three.AnimationMixer(object_mesh), self.clip, object_mesh)
 
     def animate(self):
-        return self.action
+        return self.action.play()
 
 
 # self.geo needs to be added to Renderer scene
@@ -54,7 +54,8 @@ class Box:
                                            heightSegments=1, depthSegments=1)
         self.mat = three.MeshPhysicalMaterial(color=color)
         # TODO: fix it so that calling self (ie scene.add(box))returns the self.mesh
-        self.mesh = three.Mesh(geometry=self.geo, material=self.mat)
+        # TODO: the position flag for the mesh does not work, but animation works fine
+        self.mesh = three.Mesh(geometry=self.geo, material=self.mat, position=position)
 
         self.mass = mass
         # WARNING: position is in the form of [x,z,y]
@@ -66,12 +67,13 @@ class Box:
 # self.geo needs to be added to Renderer scene
 class Sphere:
     # color can be in hex format #ffffff
-    def __init__(self, radius=1, color='red', mass=1, position=[0, 0, 0], velocity=[0, 0, 0], acceleration=[0, 0, 0]):
+    def __init__(self, radius=1, color='orange', mass=1, position=[0, 0, 0], velocity=[0, 0, 0], acceleration=[0, 0, 0]):
         self.radius = radius
-        self.geo = three.SphereBufferGeometry(radius=self.radius, widthSegments=10, heightSegments=10)
+        self.geo = three.SphereBufferGeometry(radius=self.radius, widthSegments=32, heightSegments=16)
         self.mat = three.MeshPhysicalMaterial(color=color)
         # TODO: fix it so that calling self (ie scene.add(sphere))returns the self.mesh
-        self.mesh = three.Mesh(geometry=self.geo, material=self.mat)
+        # TODO: the position flag for the mesh does not work, but animation works fine
+        self.mesh = three.Mesh(geometry=self.geo, material=self.mat, position=position)
 
         self.mass = mass
         # WARNING: position is in the form of [x,z,y]
