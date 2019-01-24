@@ -4,7 +4,7 @@
 import pythreejs as three
 from random import getrandbits
 
-
+# TODO: make sure this outputs valid html colors
 # void -> string
 def random_hex_color():
     '''
@@ -65,7 +65,6 @@ class Box:
                                            heightSegments=1, depthSegments=1)
         self.mat = three.MeshPhysicalMaterial(color=color)
         # TODO: fix it so that calling self (ie scene.add(box))returns the self.mesh
-        # TODO: the position flag for the mesh does not work, but animation works fine
         self.mesh = three.Mesh(geometry=self.geo, material=self.mat, position=position)
 
         self.mass = mass
@@ -84,7 +83,6 @@ class Sphere:
         self.geo = three.SphereBufferGeometry(radius=self.radius, widthSegments=32, heightSegments=16)
         self.mat = three.MeshPhysicalMaterial(color=color)
         # TODO: fix it so that calling self (ie scene.add(sphere))returns the self.mesh
-        # TODO: the position flag for the mesh does not work, but animation works fine
         self.mesh = three.Mesh(geometry=self.geo, material=self.mat, position=position)
 
         self.mass = mass
