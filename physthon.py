@@ -23,6 +23,16 @@ def euler_method(dt, pos_vec, vel_vec, acc_vec):
     return pos_vec
 
 
+# TODO: make sure this outputs valid html colors
+#  void -> string
+def random_hex_color():
+    """
+        Returns a random 6 digit hex number for use with colors
+    :return: hex string of the format #ffffff
+    """
+    return '#' + '%0x' % getrandbits(6 * 4)
+
+
 # double, double, double, double, -> double[3]
 def vector_components(magnitude, pos_x, pos_y, pos_z):
     """
@@ -41,17 +51,6 @@ def vector_components(magnitude, pos_x, pos_y, pos_z):
     vec_xy = magnitude * np.cos(np.arcsin(pos_z / r))
     vec = [vec_xz * pos_x / r_xz, vec_xy * pos_y / r_xy, vec_xz * pos_z / r_xz]
     return vec
-
-    # TODO: make sure this outputs valid html colors
-    # void -> string
-
-
-def random_hex_color():
-    """
-        Returns a random 6 digit hex number for use with colors
-    :return: hex string of the format #ffffff
-    """
-    return '#' + '%0x' % getrandbits(6 * 4)
 
 
 class Renderer:
