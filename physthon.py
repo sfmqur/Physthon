@@ -15,7 +15,7 @@ def euler_method(dt, pos_vec, vel_vec, acc_vec):
     :param pos_vec:
     :param vel_vec:
     :param acc_vec:
-    :return:
+    :return: replaces the old position vector
     """
     for i in range(3):
         vel_vec[i] += acc_vec[i] * dt
